@@ -1,0 +1,349 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>User Dashboard</title>
+  <style>
+    body, h1, h2, nav, a, img {
+      margin: 0;
+      padding: 0;
+      font-family: 'Arial', sans-serif;
+    }
+
+    body {
+      background-color: #f5f5f5;
+      display: flex;
+      min-height: 100vh;
+      color: #333;
+    }
+
+    aside {
+        width: 250px;
+        background: linear-gradient(135deg, #3b5998, #8b9dc3); /* Cool blue gradient */
+        color: white;
+        padding: 20px;
+        position: fixed;
+        top: 0;
+        bottom: 0;
+        left: 0;
+        box-sizing: border-box;
+        z-index: 100;
+    }
+
+
+    nav {
+      display: flex;
+      flex-direction: column;
+    }
+
+    nav a {
+      color: white;
+      text-decoration: none;
+      padding: 12px;
+      margin-bottom: 10px;
+      font-size: 18px;
+      border-radius: 5px;
+      transition: background-color 0.3s ease, transform 0.2s ease;
+    }
+
+    nav a:hover {
+      background-color: #388E3C;
+      transform: translateX(5px);
+    }
+
+    main {
+      flex: 1;
+      padding: 30px;
+      margin-left: 270px;
+      box-sizing: border-box;
+      background: white;
+      border-radius: 8px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    }
+
+    main h1 {
+      font-size: 32px;
+      margin-bottom: 20px;
+      color: #333;
+      font-weight: bold;
+      text-align: left;
+    }
+
+    .logo-container {
+      display: flex;
+      align-items: center;
+      margin-bottom: 20px;
+    }
+
+    .logo-container img {
+      max-width: 100px;
+      margin-right: 20px;
+    }
+
+    .header-text {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .header-text div {
+      font-size: 20px;
+      font-weight: 600;
+    }
+
+    .product-container {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+      gap: 20px;
+      margin-top: 20px;
+      transform: translateX(20px); /* Move the product-container to the right by 20px */
+    }
+
+    .product-container div {
+      background-color: #fff;
+      padding: 20px;
+      border-radius: 10px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+      transition: transform 0.3s ease;
+    }
+
+    .product-container div:hover {
+      transform: translateY(-5px);
+    }
+
+    .product-container img {
+      width: 100%;
+      height: auto;
+      border-radius: 10px;
+      margin-bottom: 15px;
+    }
+
+    .product-container h5 {
+      font-size: 20px;
+      margin-top: 10px;
+      color: #333;
+      font-weight: 600;
+    }
+
+    .product-container p {
+      font-size: 16px;
+      color: #555;
+      margin-bottom: 10px;
+    }
+
+    .product-container button {
+      padding: 12px 20px;
+      border: none;
+      background-color: #4CAF50;
+      color: white;
+      font-size: 16px;
+      cursor: pointer;
+      border-radius: 5px;
+      width: 100%;
+      transition: background-color 0.3s ease;
+    }
+
+    .product-container button:hover {
+      background-color: #388E3C;
+    }
+
+    .transaction-btn {
+      display: inline-block;
+      background-color: #FF5722;
+      color: white;
+      padding: 12px 20px;
+      text-decoration: none;
+      border-radius: 5px;
+      margin-top: 40px;
+      font-size: 18px;
+      text-align: center;
+      width: 100%;
+      transition: background-color 0.3s ease;
+    }
+
+    .transaction-btn:hover {
+      background-color: #f44336;
+    }
+
+    #transactionModal {
+      display: none;
+      position: fixed;
+      top: 0; left: 0; right: 0; bottom: 0;
+      background-color: rgba(0, 0, 0, 0.7);
+      z-index: 999;
+      justify-content: center;
+      align-items: center;
+    }
+
+    #transactionModalContent {
+      background: white;
+      padding: 30px;
+      border-radius: 10px;
+      max-width: 500px;
+      width: 90%;
+    }
+
+    #transactionModalContent h2 {
+      margin-bottom: 15px;
+      text-align: center;
+    }
+
+    #cartItems {
+      list-style-type: none;
+      padding-left: 0;
+      margin-bottom: 20px;
+    }
+
+    #cartItems li {
+      padding: 8px;
+      border-bottom: 1px solid #ddd;
+    }
+
+    #cartCounter {
+      margin-top: 20px;
+      font-weight: bold;
+    }
+
+    @media (max-width: 768px) {
+      main {
+        margin-left: 0;
+        padding: 20px;
+      }
+
+      .product-container {
+        grid-template-columns: 1fr 1fr;
+      }
+
+      aside {
+        width: 100%;
+        height: auto;
+        position: relative;
+      }
+
+      .logo-container {
+        flex-direction: column;
+        align-items: center;
+        margin-bottom: 20px;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .product-container {
+        grid-template-columns: 1fr;
+      }
+
+      .product-container button,
+      .transaction-btn {
+        width: 100%;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Sidebar -->
+  <aside>
+    <h2>User Panel</h2>
+    <nav>
+      <a href="#">Home</a>
+      <a href="customer-profile.html  ">Customer Profile</a>
+      <a href="#" onclick="logout()">Logout</a>
+      <div id="cartCounter">🛒 0 items</div>
+    </nav>
+  </aside>
+
+  <!-- Main Content -->
+  <main>
+    <div class="logo-container">
+      <img src="system-logo.jpg" alt="System Logo">
+      <div class="header-text">
+        <div>Welcome User</div>
+        <h1>Featured Products</h1>
+      </div>
+    </div>
+
+    <div class="product-container">
+      <div>
+        <img src="cdo-young-Pork-Tocino.jpg" alt="Product 1">
+        <h5>cdo Funtastyk Young Pork Tocino</h5>
+        <p>Price: ₱166.05</p>
+        <p>Ratings: ⭐⭐⭐⭐</p>
+        <button onclick="addToCart('Young Pork Tocino')">Select</button>
+      </div>
+      <div>
+        <img src="cdo-chili-Tocino.jpg" alt="Product 2">
+        <h5>cdo Funtastyk Chili Tocino</h5>
+        <p>Price: ₱93.95</p>
+        <p>Ratings: ⭐⭐⭐⭐⭐</p>
+        <button onclick="addToCart('Chili Tocino')">Select</button>
+      </div>
+      <div>
+        <img src="cdo-young-Pork-Tocino-Fatless.jpg" alt="Product 3">
+        <h5>cdo Funtastyk Young Pork Tocino Fatless</h5>
+        <p>Price: ₱119.00</p>
+        <p>Ratings: ⭐⭐⭐</p>
+        <button onclick="addToCart('Young Pork Tocino Fatless')">Select</button>
+      </div>
+      <div>
+        <img src="cdo-Pork-Longganisa.jpg" alt="Product 4">
+        <h5>cdo Funtastyk Pork Longganisa</h5>
+        <p>Price: ₱106.00</p>
+        <p>Ratings: ⭐⭐⭐⭐</p>
+        <button onclick="addToCart('Pork Longganisa')">Select</button>
+      </div>
+      <div>
+        <img src="cdo-Chicken-Tocino.jpg" alt="Product 5">
+        <h5>cdo Funtastyk Chicken Tocino</h5>
+        <p>Price: ₱193.00</p>
+        <p>Ratings: ⭐⭐⭐</p>
+        <button onclick="addToCart('Chicken Tocino')">Select</button>
+      </div>
+    </div>
+
+    <a href="#" class="transaction-btn" onclick="openTransaction()">Go to Transactions</a>
+  </main>
+
+  <!-- Transaction Modal -->
+  <div id="transactionModal">
+    <div id="transactionModalContent">
+      <h2>Cart Summary</h2>
+      <ul id="cartItems"></ul>
+      <button onclick="closeTransaction()">Close</button>
+    </div>
+  </div>
+
+  <script>
+    let cartItems = [];
+    let cartCount = 0;
+
+    function addToCart(product) {
+      cartItems.push(product);
+      cartCount++;
+      document.getElementById('cartCounter').innerText = `🛒 ${cartCount} item${cartCount !== 1 ? 's' : ''}`;
+      alert(`${product} added to cart!`);
+    }
+
+    function openTransaction() {
+      const cartItemsList = document.getElementById('cartItems');
+      cartItemsList.innerHTML = ''; // Clear any existing items
+      cartItems.forEach(item => {
+        const li = document.createElement('li');
+        li.innerText = item;
+        cartItemsList.appendChild(li);
+      });
+      document.getElementById('transactionModal').style.display = 'flex';
+    }
+
+    function closeTransaction() {
+      document.getElementById('transactionModal').style.display = 'none';
+    }
+
+    function logout() {
+      // Clear session or localStorage if you're using it
+      // For example: localStorage.clear();
+      window.location.href = "user-login.html"; // Redirect to the login page
+    }
+  </script>
+
+</body>
+</html>

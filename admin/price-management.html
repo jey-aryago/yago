@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Price Management</title>
+
+  <!-- Favicon -->
+  <link rel="icon" href="system-logo.jpg" type="image/x-icon"/>
+
+  <!-- Google Fonts, Bootstrap CSS & Bootstrap Icons -->
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+  <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
+
+  <style>
+    body {
+      font-family: 'Roboto', sans-serif;
+      background-color: #f1f9fc; /* Soft Blue background for better contrast */
+      margin: 0;
+      padding: 0;
+    }
+  
+    .container {
+      width: 80%;
+      margin: 0 auto;
+      padding-top: 40px;
+    }
+  
+    h1 {
+      text-align: center;
+      color: #388E3C; /* Darker Green */
+      margin-bottom: 20px;
+    }
+  
+    .button-group {
+      display: flex;
+      justify-content: space-between;
+      margin-bottom: 20px;
+    }
+  
+    .button-group button {
+      background-color: #4CAF50;
+      color: white;
+      padding: 10px 20px;
+      font-size: 16px;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+    }
+  
+    .button-group button:hover {
+      background-color: #388E3C; /* Darker Green on hover */
+    }
+  
+    .button-group i {
+      margin-right: 8px;
+    }
+  
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-bottom: 20px;
+      background-color: #fff;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    }
+  
+    th, td {
+      padding: 12px;
+      text-align: left;
+      border: 1px solid #ddd;
+    }
+  
+    th {
+      background-color: #4CAF50;
+      color: white;
+    }
+  
+    tbody tr:nth-child(even) {
+      background-color: #f9f9f9;
+    }
+  
+    tbody tr:nth-child(odd) {
+      background-color: #ffffff;
+    }
+  
+    tbody tr:hover {
+      background-color: #e9f7f3; /* Light blue hover effect */
+      cursor: pointer;
+    }
+  
+    .btn-sm {
+      font-size: 12px;
+      padding: 5px 10px;
+      border-radius: 5px;
+    }
+  
+    .edit-btn {
+      background-color: #FFC107;
+      border: none;
+      color: white;
+      margin-right: 5px;
+    }
+  
+    .delete-btn {
+      background-color: #DC3545;
+      border: none;
+      color: white;
+    }
+  
+    .edit-btn:hover {
+      background-color: #FFB300; /* Brighter Yellow on hover */
+    }
+  
+    .delete-btn:hover {
+      background-color: #C82333; /* Darker Red on hover */
+    }
+  
+    @media (max-width: 768px) {
+      .container {
+        width: 90%;
+      }
+      table {
+        font-size: 14px;
+      }
+      .button-group button {
+        padding: 8px 15px;
+        font-size: 14px;
+      }
+    }
+  </style>
+  
+</head>
+<body>
+
+  <div class="container">
+    <h1>Price Management</h1>
+
+    <div class="button-group">
+      <button onclick="history.back()">
+        <i class="bi bi-arrow-left"></i> Go Back
+      </button>
+      <button id="addProductBtn" data-toggle="modal" data-target="#addProductModal">
+        <i class="bi bi-plus-circle"></i> Add Product
+      </button>
+    </div>
+
+    <!-- Add Product Modal -->
+    <div class="modal" id="addProductModal" tabindex="-1" role="dialog" aria-labelledby="addProductModalLabel" aria-hidden="true">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="addProductModalLabel">Add New Product</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+            <form id="addProductForm">
+              <div class="form-group">
+                <label for="productName">Product Name</label>
+                <input type="text" class="form-control" id="productName" required>
+              </div>
+              <div class="form-group">
+                <label for="productPrice">Price (PHP)</label>
+                <input type="number" class="form-control" id="productPrice" required>
+              </div>
+            </form>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+            <button type="button" class="btn btn-primary" onclick="addProduct()">Add Product</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <table id="productTable">
+      <thead>
+        <tr>
+          <th>Product Name</th>
+          <th>Price</th>
+          <th>Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>cdo Funtastyk Young Pork Tocino</td>
+          <td>₱166.05</td>
+          <td>
+            <button class="btn btn-warning btn-sm edit-btn" onclick="editProduct(this)">Edit</button>
+            <button class="btn btn-danger btn-sm delete-btn" onclick="deleteProduct(this)">Delete</button>
+          </td>
+        </tr>
+        <!-- Additional rows here... -->
+      </tbody>
+    </table>
+  </div>
+
+  <!-- JavaScript -->
+  <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.3/dist/umd/popper.min.js"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+  <script>
+    function addProduct() {
+      var productName = document.getElementById('productName').value;
+      var productPrice = document.getElementById('productPrice').value;
+      if (productName && productPrice) {
+        var table = document.getElementById('productTable').getElementsByTagName('tbody')[0];
+        var newRow = table.insertRow();
+        newRow.innerHTML = `
+          <td>${productName}</td>
+          <td>${productPrice}</td>
+          <td>
+            <button class="btn btn-warning btn-sm edit-btn" onclick="editProduct(this)">Edit</button>
+            <button class="btn btn-danger btn-sm delete-btn" onclick="deleteProduct(this)">Delete</button>
+          </td>
+        `;
+        $('#addProductModal').modal('hide');
+        document.getElementById('addProductForm').reset();
+      }
+    }
+
+    function editProduct(button) {
+      var row = button.closest('tr');
+      var productName = row.cells[0].innerText;
+      var price = row.cells[1].innerText;
+
+      var newProductName = prompt("Edit Product Name", productName);
+      var newPrice = prompt("Edit Product Price", price);
+
+      if (newProductName && newPrice) {
+        row.cells[0].innerText = newProductName;
+        row.cells[1].innerText = newPrice;
+      }
+    }
+
+    function deleteProduct(button) {
+      var row = button.closest('tr');
+      var confirmDelete = confirm("Are you sure you want to delete this product?");
+      if (confirmDelete) {
+        row.remove();
+      }
+    }
+  </script>
+
+</body>
+</html>

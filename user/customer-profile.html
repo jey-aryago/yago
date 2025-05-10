@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Customer Profile</title>
+  <meta name="description" content="View and manage your customer profile.">
+  <meta name="author" content="YourCompanyName">
+
+  <link rel="icon" type="image/x-icon" href="system-logo.jpg" />
+
+  <style>
+    /* Base styles */
+    body {
+      font-family: Arial, sans-serif;
+      background: #f2f5f9;
+      margin: 0;
+      padding: 0;
+      display: flex;
+      justify-content: center;
+      align-items: flex-start;
+      min-height: 100vh;
+    }
+
+    main.profile-container {
+      width: 100%;
+      max-width: 500px;
+      margin: 40px 20px;
+      background: #fff;
+      border-radius: 12px;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+      padding: 30px;
+    }
+
+    h1, h2 {
+      text-align: center;
+      color: #333;
+    }
+
+    .form-group {
+      margin-bottom: 20px;
+    }
+
+    label {
+      display: block;
+      margin-bottom: 6px;
+      font-weight: 600;
+      color: #555;
+    }
+
+    .form-input {
+      width: 100%;
+      padding: 10px 12px;
+      border: 1px solid #ccc;
+      border-radius: 6px;
+      font-size: 1rem;
+      transition: border-color 0.2s;
+    }
+
+    .form-input:focus {
+      border-color: #007BFF;
+      outline: none;
+    }
+
+    .button-container {
+      display: flex;
+      justify-content: center;
+      gap: 10px;
+      margin-top: 20px;
+    }
+
+    .btn-primary, .btn-secondary {
+      padding: 10px 20px;
+      border: none;
+      border-radius: 6px;
+      font-size: 1rem;
+      cursor: pointer;
+      transition: background 0.3s, transform 0.2s;
+      text-decoration: none;
+      text-align: center;
+      display: inline-block;
+    }
+
+    .btn-primary {
+      background: #007BFF;
+      color: #fff;
+    }
+
+    .btn-primary:hover {
+      background: #0056b3;
+      transform: translateY(-2px);
+    }
+
+    .btn-secondary {
+      background: #6c757d;
+      color: #fff;
+    }
+
+    .btn-secondary:hover {
+      background: #545b62;
+      transform: translateY(-2px);
+    }
+
+    .button-center {
+      text-align: center;
+      margin-top: 20px;
+    }
+
+    @media (max-width: 500px) {
+      main.profile-container {
+        padding: 20px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <main class="profile-container">
+    <h1>Customer Profile</h1>
+
+    <section class="profile-card">
+      <div class="profile-body">
+        <h2>Personal Information</h2>
+        <form id="profileForm">
+          <div class="form-group">
+            <label for="name">Full Name</label>
+            <input type="text" id="name" name="fullName" class="form-input" value="John Doe" disabled />
+          </div>
+          <div class="form-group">
+            <label for="email">Email Address</label>
+            <input type="email" id="email" name="email" class="form-input" value="johndoe@example.com" disabled />
+          </div>
+          <div class="form-group">
+            <label for="phone">Phone Number</label>
+            <input type="tel" id="phone" name="phone" class="form-input" value="+1234567890" disabled />
+          </div>
+          <div class="form-group">
+            <label for="address">Shipping Address</label>
+            <input type="text" id="address" name="address" class="form-input" value="123 Main St, Cityville" disabled />
+          </div>
+          <div class="button-container">
+            <button type="button" class="btn-primary" id="editBtn">Edit Profile</button>
+            <button type="submit" class="btn-primary" id="saveBtn" style="display: none;">Save Changes</button>
+          </div>
+        </form>
+      </div>
+    </section>
+
+    <div class="button-center">
+      <a href="user-dashboard.html" class="btn-secondary">Go Back</a>
+    </div>
+  </main>
+
+  <script>
+    const editBtn = document.getElementById('editBtn');
+    const saveBtn = document.getElementById('saveBtn');
+    const inputs = document.querySelectorAll('.form-input');
+    const form = document.getElementById('profileForm');
+
+    editBtn.addEventListener('click', () => {
+      inputs.forEach(input => input.disabled = false);
+      editBtn.style.display = 'none';
+      saveBtn.style.display = 'inline-block';
+    });
+
+    form.addEventListener('submit', (e) => {
+      e.preventDefault();
+      // Here you can handle saving the updated data (e.g., AJAX call)
+      alert('Profile changes saved!');
+      inputs.forEach(input => input.disabled = true);
+      editBtn.style.display = 'inline-block';
+      saveBtn.style.display = 'none';
+    });
+  </script>
+</body>
+</html>

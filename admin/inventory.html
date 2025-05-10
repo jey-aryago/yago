@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Inventory Management</title>
+
+  <!-- Favicon -->
+  <link rel="icon" href="system-logo.jpg" type="image/x-icon" />
+
+  <!-- Google Fonts, Bootstrap & Bootstrap Icons -->
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+  <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
+
+  <style>
+    body {
+      font-family: 'Roboto', sans-serif;
+      background-color: #f4f4f9;
+      margin: 0;
+      padding: 0;
+    }
+
+    .container {
+      width: 80%;
+      margin: 0 auto;
+      padding-top: 40px;
+    }
+
+    .header-div {
+      background-color: #4CAF50;
+      padding: 20px;
+      border-radius: 8px;
+      text-align: center;
+      margin-bottom: 20px;
+    }
+
+    .header-div h1 {
+      color: white;
+      font-size: 2rem;
+      margin: 0;
+    }
+
+    .current-inventory-title {
+      background-color: #4CAF50;
+      color: white;
+      padding: 15px;
+      border-radius: 8px;
+      font-size: 1.5rem;
+      text-align: center;
+      margin-bottom: 20px;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-bottom: 20px;
+      background-color: #fff;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    }
+
+    th, td {
+      padding: 12px;
+      text-align: left;
+      border: 1px solid #ddd;
+    }
+
+    th {
+      background-color: #4CAF50;
+      color: white;
+    }
+
+    tbody tr:nth-child(even) {
+      background-color: #f9f9f9;
+    }
+
+    tbody tr:nth-child(odd) {
+      background-color: #ffffff;
+    }
+
+    tbody tr:hover {
+      background-color: #f1f1f1;
+      cursor: pointer;
+    }
+
+    .btn-container {
+      text-align: center;
+      margin-top: 20px;
+    }
+
+    .btn-container button {
+      background-color: #4CAF50;
+      color: white;
+      padding: 10px 20px;
+      font-size: 16px;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+    }
+
+    .btn-container button:hover {
+      background-color: #45a049;
+    }
+
+    .btn-container i {
+      margin-right: 8px;
+    }
+
+    @media (max-width: 768px) {
+      .container {
+        width: 90%;
+      }
+      table {
+        font-size: 14px;
+      }
+      .btn-container button {
+        padding: 8px 15px;
+        font-size: 14px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="container">
+    <div class="header-div">
+      <h1>Inventory Management</h1>
+    </div>
+
+    <div class="current-inventory-title">
+      Current Inventory
+    </div>
+
+    <!-- Search Bar -->
+    <div class="btn-container">
+      <input type="text" id="searchInput" class="form-control" placeholder="Search Inventory..." onkeyup="searchTable()">
+    </div>
+
+    <!-- Inventory Table -->
+    <table>
+      <thead>
+        <tr>
+          <th>Item ID</th>
+          <th>Item Name</th>
+          <th>Quantity</th>
+          <th>Price (PHP)</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr><td>001</td><td>cdo Funtastyk Young Pork Tocino</td><td>150</td><td>₱24,907.5</td></tr>
+        <tr><td>002</td><td>cdo Funtastyk Chili Tocino</td><td>200</td><td>₱18,790.00</td></tr>
+        <tr><td>003</td><td>cdo Funtastyk Young Pork Tocino Fatless</td><td>100</td><td>₱11,900.00</td></tr>
+        <tr><td>004</td><td>cdo Funtastyk Pork Longganisa</td><td>50</td><td>₱5,300.00</td></tr>
+        <tr><td>005</td><td>cdo Funtastyk Chicken Tocino</td><td>80</td><td>₱15,440.00</td></tr>
+      </tbody>
+    </table>
+
+    <!-- Back Button -->
+    <div class="btn-container">
+      <button onclick="history.back()">
+        <i class="bi bi-arrow-left"></i> Go Back
+      </button>
+    </div>
+  </div>
+
+  <!-- JavaScript for Search Functionality -->
+  <script>
+    function searchTable() {
+      let input = document.getElementById('searchInput');
+      let filter = input.value.toUpperCase();
+      let rows = document.querySelector('table').rows;
+
+      for (let i = 1; i < rows.length; i++) {
+        let cells = rows[i].getElementsByTagName('td');
+        let found = false;
+
+        for (let j = 0; j < cells.length; j++) {
+          if (cells[j].innerText.toUpperCase().includes(filter)) {
+            found = true;
+            break;
+          }
+        }
+
+        rows[i].style.display = found ? "" : "none";
+      }
+    }
+  </script>
+
+</body>
+</html>

@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Sales Report</title>
+  
+  <!-- Favicon -->
+  <link rel="icon" type="image/x-icon" href="system-logo.jpg" />
+
+  <!-- External Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet" />
+  <style>
+    /* Basic Reset */
+    body, h1, table, th, td {
+      margin: 0;
+      padding: 0;
+      font-family: 'Roboto', sans-serif;
+    }
+
+    /* Background and Layout */
+    body {
+      background-color: #f4f4f9;
+      color: #333;
+      padding: 20px;
+      box-sizing: border-box;
+    }
+
+    .container {
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 30px;
+      background: white;
+      box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+      border-radius: 8px;
+    }
+
+    h1 {
+      font-size: 28px;
+      margin-bottom: 20px;
+      color: #4CAF50;
+      text-align: center;
+      text-transform: uppercase;
+    }
+
+    /* Table Styles */
+    .table-responsive {
+      max-width: 100%;
+      overflow-x: auto;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-bottom: 20px;
+    }
+
+    th, td {
+      padding: 15px;
+      text-align: left;
+      border-bottom: 1px solid #ddd;
+    }
+
+    th {
+      background-color: #4CAF50;
+      color: white;
+      text-transform: uppercase;
+    }
+
+    td {
+      background-color: #f9f9f9;
+    }
+
+    td:hover {
+      background-color: #e8f5e9;
+    }
+
+    /* Button Styles */
+    button {
+      background-color: #4CAF50;
+      color: white;
+      padding: 10px 20px;
+      font-size: 16px;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      display: block;
+      margin: 0 auto;
+      margin-top: 20px;
+      transition: background-color 0.3s ease;
+    }
+
+    button:hover {
+      background-color: #45a049;
+    }
+
+    /* Media Queries for smaller screens */
+    @media (max-width: 768px) {
+      table {
+        font-size: 14px;
+      }
+
+      h1 {
+        font-size: 24px;
+      }
+
+      button {
+        font-size: 14px;
+        padding: 8px 16px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>Sales Report</h1>
+
+    <div class="table-responsive">
+      <table>
+        <thead>
+          <tr>
+            <th>Date</th>
+            <th>Product</th>
+            <th>Quantity</th>
+            <th>Total Price</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>2025-06-01</td>
+            <td>cdo Funtastyk Young Pork Tocino</td>
+            <td>10</td>
+            <td>₱1,660.5</td>
+          </tr>
+          <tr>
+            <td>2025-06-02</td>
+            <td>cdo Funtastyk Chili Tocino</td>
+            <td>5</td>
+            <td>₱469.75</td>
+          </tr>
+          <tr>
+            <td>2025-06-03</td>
+            <td>cdo Funtastyk Young Pork Tocino Fatless</td>
+            <td>8</td>
+            <td>₱952.00</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <button onclick="window.history.back()">← Go Back</button>
+  </div>
+</body>
+</html>

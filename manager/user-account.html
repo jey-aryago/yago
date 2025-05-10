@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>User Account Overview</title>
+  <style>
+    /* General Styles */
+    body {
+      background-color: #f4f4f4;
+      font-family: Arial, sans-serif;
+      padding: 20px;
+      margin: 0;
+    }
+    h1 {
+      text-align: center;
+      color: #333;
+    }
+    .account-details {
+      background-color: #fff;
+      padding: 20px;
+      border-radius: 8px;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+      margin-bottom: 20px;
+    }
+    .account-details h2 {
+      margin-bottom: 15px;
+      font-size: 24px;
+    }
+    .account-details p {
+      font-size: 18px;
+      color: #555;
+    }
+    .btn-container {
+      display: flex;
+      justify-content: space-between;
+      margin-top: 20px;
+      gap: 10px;
+      flex-wrap: wrap;  /* Ensure buttons wrap on smaller screens */
+    }
+    .btn-container button {
+      padding: 12px 20px;
+      border: none;
+      border-radius: 5px;
+      font-size: 16px;
+      cursor: pointer;
+      width: 48%; /* Default width, will adjust on smaller screens */
+      box-sizing: border-box;
+    }
+    .edit-btn {
+      background-color: #4CAF50;
+      color: white;
+    }
+    .edit-btn:hover {
+      background-color: #45a049;
+    }
+    .delete-btn {
+      background-color: #f44336;
+      color: white;
+    }
+    .delete-btn:hover {
+      background-color: #e53935;
+    }
+    .back-btn {
+      display: inline-block;
+      background-color: #45a049;
+      color: white;
+      padding: 12px 20px;
+      border-radius: 5px;
+      text-decoration: none;
+      margin-top: 20px;
+      text-align: center;
+      width: 100%;
+    }
+    /* Media Queries for Responsiveness */
+    @media (max-width: 768px) {
+      .account-details h2 {
+        font-size: 22px;
+      }
+      .account-details p {
+        font-size: 16px;
+      }
+      .btn-container {
+        flex-direction: column;
+        gap: 15px;
+      }
+      .btn-container button {
+        width: 100%;  /* Full width for smaller screens */
+      }
+      .back-btn {
+        width: 100%;
+      }
+    }
+
+    @media (max-width: 480px) {
+      body {
+        padding: 10px;
+      }
+      h1 {
+        font-size: 28px;
+      }
+      .account-details h2 {
+        font-size: 20px;
+      }
+      .account-details p {
+        font-size: 14px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <h1>User Account Overview</h1>
+
+  <!-- Account Details Section -->
+  <div class="account-details">
+    <h2>Account Information</h2>
+    <p><strong>Username:</strong> john_doe</p>
+    <p><strong>Email:</strong> john.doe@example.com</p>
+    <p><strong>Role:</strong> Admin</p>
+    <p><strong>Account Created:</strong> 2024-03-15</p>
+  </div>
+
+  <!-- Action Buttons -->
+  <div class="btn-container">
+    <!-- Edit Button -->
+    <button class="edit-btn" onclick="location.href='edit-user.html'">Edit Account</button>
+
+    <!-- Delete Button -->
+    <button class="delete-btn" onclick="confirmDelete()">Delete Account</button>
+  </div>
+
+  <!-- Back Button -->
+  <a href="javascript:history.back()" class="back-btn">← Go Back</a>
+
+  <script>
+    // Function to handle account deletion confirmation
+    function confirmDelete() {
+      const confirmation = confirm("Are you sure you want to delete this account?");
+      if (confirmation) {
+        alert("Account deleted.");
+        // Add logic to delete the user (e.g., API call or database action)
+      }
+    }
+  </script>
+
+</body>
+</html>

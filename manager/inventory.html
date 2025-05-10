@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Inventory Management</title>
+  
+  <link rel="icon" type="image/x-icon" href="system-logo.jpg" />
+
+  <!-- External Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet" />
+  
+  <style>
+    /* Reset and Global Styles */
+    body, h1, table, th, td, button {
+      margin: 0;
+      padding: 0;
+      font-family: 'Roboto', sans-serif;
+    }
+
+    body {
+      background-color: #f5f5f5;
+      padding: 20px;
+      box-sizing: border-box;
+    }
+
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 30px;
+      background: white;
+      box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+      border-radius: 8px;
+    }
+
+    h1 {
+      font-size: 28px;
+      color: #4CAF50;
+      text-align: center;
+      margin-bottom: 20px;
+    }
+
+    .title {
+      font-size: 20px;
+      color: #333;
+      margin-bottom: 15px;
+      text-align: center;
+    }
+
+    /* Table Styles */
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 20px;
+    }
+
+    th, td {
+      padding: 12px;
+      text-align: left;
+      border-bottom: 1px solid #ddd;
+    }
+
+    th {
+      background-color: #4CAF50;
+      color: white;
+      text-transform: uppercase;
+    }
+
+    td {
+      background-color: #f9f9f9;
+    }
+
+    td:hover {
+      background-color: #e8f5e9;
+    }
+
+    /* Button Styles */
+    button {
+      background-color: #4CAF50;
+      color: white;
+      padding: 10px 20px;
+      font-size: 16px;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+    }
+
+    button:hover {
+      background-color: #45a049;
+    }
+
+    .btn-container {
+      text-align: center;
+      margin-top: 20px;
+    }
+
+    /* Media Queries for Responsiveness */
+    @media (max-width: 768px) {
+      h1 {
+        font-size: 24px;
+      }
+
+      .title {
+        font-size: 18px;
+      }
+
+      table {
+        font-size: 14px;
+      }
+
+      button {
+        font-size: 14px;
+        padding: 8px 16px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="container">
+    <h1>Inventory Management</h1>
+    
+    <div class="title">Current Inventory</div>
+
+    <table>
+      <thead>
+        <tr>
+          <th>Item ID</th>
+          <th>Item Name</th>
+          <th>Quantity</th>
+          <th>Price (PHP)</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>001</td>
+          <td>cdo Funtastyk Young Pork Tocino</td>
+          <td>150</td>
+          <td>₱24,907.5</td>
+        </tr>
+        <tr>
+          <td>002</td>
+          <td>cdo Funtastyk Chili Tocino</td>
+          <td>200</td>
+          <td>₱18,790.00</td>
+        </tr>
+        <tr>
+          <td>003</td>
+          <td>cdo Funtastyk Young Pork Tocino Fatless</td>
+          <td>100</td>
+          <td>₱11,900.00</td>
+        </tr>
+        <tr>
+          <td>004</td>
+          <td>cdo Funtastyk Pork Longganisa</td>
+          <td>50</td>
+          <td>₱5,300.00</td>
+        </tr>
+        <tr>
+          <td>005</td>
+          <td>cdo Funtastyk Chicken Tocino</td>
+          <td>80</td>
+          <td>₱15,440.00</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <div class="btn-container">
+      <button onclick="history.back()"> ← Go Back</button>
+    </div>
+  </div>
+
+</body>
+</html>

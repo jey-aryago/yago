@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Manager User Management</title>
+
+  <!-- Favicon -->
+  <link rel="icon" href="system-logo.jpg" type="image/x-icon" />
+
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" />
+  <style>
+    /* Custom styles */
+    body {
+      font-family: 'Roboto', sans-serif;
+      background-color: #f4f7fb; /* Slightly darker background for better contrast */
+    }
+  
+    .container {
+      padding: 40px 20px;
+      background-color: #ffffff; /* White background for clear separation */
+      border-radius: 10px;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); /* Soft shadow for depth */
+    }
+  
+    h2 {
+      font-size: 2rem;
+      color: #4CAF50; /* Consistent green */
+      margin-bottom: 20px;
+    }
+  
+    table {
+      width: 100%;
+      margin-top: 20px;
+      border-collapse: collapse;
+    }
+  
+    th, td {
+      padding: 12px;
+      text-align: center;
+    }
+  
+    th {
+      background: linear-gradient(to right, #4CAF50, #45a049); /* Subtle gradient for the header */
+      color: white;
+      text-transform: uppercase;
+    }
+  
+    tbody tr:nth-child(even) {
+      background-color: #f9f9f9;
+    }
+  
+    tbody tr:hover {
+      background-color: #e9f7f3; /* Slight blue hover effect */
+      cursor: pointer;
+    }
+  
+    .btn {
+      font-size: 14px;
+    }
+  
+    .btn-warning {
+      background-color: #FFCC00; /* Soft yellow for Edit */
+      border-color: #FFCC00;
+    }
+  
+    .btn-warning:hover {
+      background-color: #E0A800; /* Darker yellow on hover */
+      border-color: #E0A800;
+    }
+  
+    .btn-danger {
+      background-color: #DC3545;
+      border-color: #DC3545;
+    }
+  
+    .btn-danger:hover {
+      background-color: #C82333; /* Darker red on hover */
+      border-color: #BD2130;
+    }
+  
+    .form-label {
+      font-weight: bold;
+      color: #333; /* Darker color for labels for better readability */
+    }
+  
+    .form-control, .form-select {
+      border-radius: 8px;
+      border: 1px solid #ccc; /* Soft border for form inputs */
+      transition: border-color 0.3s ease;
+    }
+  
+    .form-control:focus, .form-select:focus {
+      border-color: #4CAF50; /* Green border on focus */
+    }
+  
+    .form-container {
+      margin-top: 40px;
+      background-color: white;
+      padding: 30px;
+      border-radius: 8px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    }
+  
+    .btn-back {
+      background-color: #388E3C; /* Darker green for back button */
+      color: white;
+      margin-top: 20px;
+      font-weight: bold;
+    }
+  
+    .btn-back:hover {
+      background-color: #45a049; /* Slightly lighter green on hover */
+    }
+    
+    /* Optional: Responsive adjustments */
+    @media (max-width: 768px) {
+      .container {
+        padding: 20px;
+      }
+    }
+  </style>
+  
+</head>
+<body>
+
+  <div class="container">
+
+    <!-- Main Title -->
+    <h2>Manager User Management</h2>
+
+    <!-- User Table -->
+    <div class="table-responsive">
+      <table id="userTable" class="table table-bordered">
+        <thead>
+          <tr>
+            <th>ID</th>
+            <th>Name</th>
+            <th>Email</th>
+            <th>Role</th>
+            <th>Actions</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>1</td>
+            <td>Jey-ar Yago</td>
+            <td>jryago@gmail.com</td>
+            <td>Manager</td>
+            <td>
+              <button class="btn btn-warning btn-sm editBtn">Edit</button>
+              <button class="btn btn-danger btn-sm deleteBtn">Delete</button>
+            </td>
+          </tr>
+          <tr>
+            <td>2</td>
+            <td>Ashley Macabangun</td>
+            <td>ashley@gmail.com</td>
+            <td>Manager</td>
+            <td>
+              <button class="btn btn-warning btn-sm editBtn">Edit</button>
+              <button class="btn btn-danger btn-sm deleteBtn">Delete</button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <!-- Add/Edit User Form -->
+    <div class="form-container">
+      <h4>Add / Edit Manager Account</h4>
+      <form id="userForm">
+        <div class="mb-3">
+          <label for="userName" class="form-label">Name</label>
+          <input type="text" class="form-control" id="userName" placeholder="Enter name" required />
+        </div>
+        <div class="mb-3">
+          <label for="userEmail" class="form-label">Email</label>
+          <input type="email" class="form-control" id="userEmail" placeholder="Enter email" required />
+        </div>
+        <div class="mb-3">
+          <label for="userRole" class="form-label">Role</label>
+          <select class="form-select" id="userRole" required>
+            <option value="Manager" selected>Manager</option>
+            <option value="Supervisor">Supervisor</option>
+            <option value="Assistant">Assistant</option>
+          </select>
+        </div>
+        <button type="submit" class="btn btn-primary">Save</button>
+      </form>
+    </div>
+
+    <!-- Go Back Button placed below -->
+    <button onclick="window.history.back()" class="btn btn-back">
+      ← Go Back
+    </button>
+
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+
+  <script>
+    // Editing a user
+    document.querySelectorAll('.editBtn').forEach(button => {
+      button.addEventListener('click', (e) => {
+        const row = e.target.closest('tr');
+        const id = row.cells[0].textContent;
+        const name = row.cells[1].textContent;
+        const email = row.cells[2].textContent;
+        const role = row.cells[3].textContent;
+
+        // Populate form with user details
+        document.getElementById('userName').value = name;
+        document.getElementById('userEmail').value = email;
+        document.getElementById('userRole').value = role;
+
+        // Save the user's ID for later update
+        document.getElementById('userForm').dataset.userId = id;
+      });
+    });
+
+    // Deleting a user
+    document.querySelectorAll('.deleteBtn').forEach(button => {
+      button.addEventListener('click', (e) => {
+        const row = e.target.closest('tr');
+        row.remove();
+      });
+    });
+
+    // Handling form submission for saving or updating user
+    document.getElementById('userForm').addEventListener('submit', (e) => {
+      e.preventDefault();
+
+      const userId = e.target.dataset.userId;
+      const name = document.getElementById('userName').value;
+      const email = document.getElementById('userEmail').value;
+      const role = document.getElementById('userRole').value;
+
+      if (userId) {
+        // Update existing user
+        const row = document.querySelector(`tr td:first-child[textContent='${userId}']`).parentElement;
+        row.cells[1].textContent = name;
+        row.cells[2].textContent = email;
+        row.cells[3].textContent = role;
+      } else {
+        // Add new user (if no userId exists)
+        const newRow = document.createElement('tr');
+        newRow.innerHTML = `
+          <td>${document.querySelectorAll('#userTable tr').length}</td>
+          <td>${name}</td>
+          <td>${email}</td>
+          <td>${role}</td>
+          <td>
+            <button class="btn btn-warning btn-sm editBtn">Edit</button>
+            <button class="btn btn-danger btn-sm deleteBtn">Delete</button>
+          </td>
+        `;
+        document.querySelector('#userTable tbody').appendChild(newRow);
+      }
+
+      // Clear form after submission
+      document.getElementById('userForm').reset();
+      delete document.getElementById('userForm').dataset.userId;
+    });
+  </script>
+
+</body>
+</html>

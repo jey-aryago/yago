@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Source Item Status</title>
+
+  <link rel="icon" type="image/x-icon" href="system-logo.jpg" />
+
+  <style>
+    /* Reset and Global Styles */
+    body, h1, table, th, td {
+      margin: 0;
+      padding: 0;
+      font-family: Arial, sans-serif;
+    }
+
+    body {
+      background-color: #f9f9f9;
+      padding: 20px;
+      box-sizing: border-box;
+    }
+
+    h1 {
+      font-size: 28px;
+      color: #333;
+      text-align: center;
+      margin-bottom: 30px;
+    }
+
+    /* Table Styling */
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 20px;
+    }
+
+    th, td {
+      padding: 12px;
+      text-align: left;
+      border-bottom: 1px solid #ddd;
+    }
+
+    th {
+      background-color: #4CAF50;
+      color: white;
+      text-transform: uppercase;
+    }
+
+    td {
+      background-color: #fff;
+      color: #333;
+    }
+
+    td:hover {
+      background-color: #f1f1f1;
+    }
+
+    /* Status Indicator Styling */
+    .status {
+      padding: 5px 10px;
+      font-weight: bold;
+      color: white;
+      border-radius: 5px;
+    }
+
+    .in-stock {
+      background-color: #4CAF50; /* Green for In Stock */
+    }
+
+    .out-of-stock {
+      background-color: #FF5722; /* Red for Out of Stock */
+    }
+
+    /* Back Button Styling */
+    .back-btn {
+      display: inline-block;
+      background-color: #4CAF50;
+      color: white;
+      padding: 10px 20px;
+      text-decoration: none;
+      border-radius: 5px;
+      margin-top: 20px;
+      cursor: pointer;
+    }
+
+    .back-btn:hover {
+      background-color: #45a049;
+    }
+
+    /* Print Button Styling */
+    .print-btn {
+      display: inline-block;
+      background-color: #3e2ab0;
+      color: white;
+      padding: 10px 20px;
+      text-decoration: none;
+      border-radius: 5px;
+      margin-top: 20px;
+      cursor: pointer;
+    }
+
+    /* Media Queries for Responsiveness */
+    @media (max-width: 768px) {
+      h1 {
+        font-size: 24px;
+      }
+
+      table {
+        font-size: 14px;
+      }
+
+      th, td {
+        padding: 8px;
+      }
+
+      .back-btn, .print-btn {
+        width: 100%;
+        text-align: center;
+      }
+    }
+
+    @media (max-width: 480px) {
+      body {
+        padding: 10px;
+      }
+
+      h1 {
+        font-size: 22px;
+      }
+
+      table {
+        font-size: 12px;
+      }
+
+      th, td {
+        padding: 6px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <h1>Source Item Status</h1>
+
+  <table>
+    <thead>
+      <tr>
+        <th>Item Name</th>
+        <th>Status</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>Item A</td>
+        <td><span class="status in-stock">In Stock</span></td>
+      </tr>
+      <tr>
+        <td>Item B</td>
+        <td><span class="status out-of-stock">Out of Stock</span></td>
+      </tr>
+      <tr>
+        <td>Item C</td>
+        <td><span class="status in-stock">In Stock</span></td>
+      </tr>
+      <tr>
+        <td>Item D</td>
+        <td><span class="status out-of-stock">Out of Stock</span></td>
+      </tr>
+    </tbody>
+  </table>
+
+  <!-- Back Button -->
+  <a href="javascript:history.back()" class="back-btn">← Go Back</a>
+
+  <!-- Print Button -->
+  <a href="javascript:void(0)" class="print-btn" onclick="printPage()">Print Report</a>
+
+  <script>
+    // Function to handle the print functionality
+    function printPage() {
+      window.print();
+    }
+  </script>
+
+</body>
+</html>
